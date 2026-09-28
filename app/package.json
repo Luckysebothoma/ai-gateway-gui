@@ -1,0 +1,17 @@
+{
+  "name": "ai-gui-app",
+  "version": "3.0.0",
+  "private": true,
+  "description": "All-in-one AI GUI: unified Node server (frontend + API), dual-port (browser + backend/n8n), self-healing schema, persisted chat history. Talks to the AI Gateway the way a real client does: POST /v1/chat with {message, session_id} only.",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "prom-client": "^15.1.3",
+    "winston": "^3.13.0",
+    "axios": "^1.7.4",
+    "uuid": "^9.0.1"
+  }
+}

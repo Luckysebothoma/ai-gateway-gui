@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="app__header">
+      <div class="app__title">
+        <span class="app__wave">💬</span>
+        <div>
+          <h1 id="greeting">AI Chat</h1>
+          <p id="fulldate" class="app__date"></p>
+        </div>
+      </div>
+      <div class="app__badges">
+        <span id="statusBadge" class="badge">connecting…</span>
+        <button id="newChatBtn" class="badge badge--btn" title="Start a new conversation">new chat</button>
+      </div>
+    </header>
+
+    <section class="panel panel--chat">
+      <div id="messages" class="messages"></div>
+      <form id="composer" class="composer">
+        <input id="messageInput" placeholder="Type your message…" autocomplete="off" />
+        <button type="submit" id="sendBtn" class="btn btn--primary">Send</button>
+      </form>
+    </section>
+
+    <footer class="app__footer"><a href="/help" target="_blank" rel="noopener">API docs</a></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
