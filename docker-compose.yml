@@ -20,6 +20,8 @@ services:
       - "${APP_PORT:-8090}:${APP_PORT:-8090}"
       - "${BACKEND_PORT:-4500}:${BACKEND_PORT:-4500}"
     restart: unless-stopped
+    networks:
+      - obs-network
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:${APP_PORT:-8090}/api/health"]
       interval: 15s
@@ -31,26 +33,13 @@ services:
   # --profile managed-db automatically). For POSTGRES_MODE=external, set
   # PGHOST/PGPORT/PGUSER/PGPASSWORD in .env and this service is never
   # started.
-  postgres:
-    image: postgres:16-alpine
-    profiles: ["managed-db"]
-    env_file:
-      - .env
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB:-ai_gui}
-      - POSTGRES_USER=${POSTGRES_USER:-ai_gui}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-change_me_in_env}
-    ports:
-      - "${POSTGRES_PORT:-5432}:5432"
-    volumes:
-      - ai_gui_pgdata:/var/lib/postgresql/data
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ai_gui} -d ${POSTGRES_DB:-ai_gui}"]
-      interval: 10s
-      timeout: 3s
-      retries: 5
+
 
 volumes:
   ai_gui_pgdata:
     driver: local
+networks:
+  databass:
+    external: true
+  obs-network:
+    external: true
